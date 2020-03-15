@@ -183,6 +183,25 @@ namespace Information_Theory.Labs
 				new SystemSolver.Vector3(new []{0.0, 0.0, 1.0}));
 
 			var avglTotal = avgla * sol.x + avglb * sol.y + avglc * sol.z;
+			Console.WriteLine(Math.Round(avgla, 3) +
+			                  "*" +
+			                  Math.Round(sol.x, 3) +
+			                  "+" +
+			                  Math.Round(avglb, 3) +
+			                  "*" +
+			                  Math.Round(sol.y, 3) +
+			                  "+" +
+			                  Math.Round(avglc, 3) +
+			                  "*" +
+			                  Math.Round(sol.z, 3) +
+			                  "=" +
+			                  Math.Round(avgla * sol.x, 3) +
+			                  "+" +
+			                  Math.Round(avglb * sol.y, 3) +
+			                  "+" +
+			                  Math.Round(avglc * sol.z, 3) +
+			                  "=" +
+			                  Math.Round(avglTotal, 3));
 
 			var Hmem = 0.0;
 			var memPrecalc = "";
@@ -222,6 +241,7 @@ namespace Information_Theory.Labs
 			                  "%");
 			
 			nonConditional = new List<Symbol>{new Symbol("A", sol[0]), new Symbol("B", sol[1]), new Symbol("C", sol[2])};
+			nonConditional = nonConditional.OrderByDescending(x => x.Probability).ToList();
 			nonConditional = ShannonFano(nonConditional);
 		}
 		private static List<Symbol> MakePairs(List<Symbol> symbols, char encoding)
@@ -233,7 +253,7 @@ namespace Information_Theory.Labs
 				{
 					var name = symbols[i].Name + symbols[j].Name;
 					var prob = symbols[i].Probability * symbols[j].Probability;
-					Console.WriteLine("p("+name+")="+symbols[i].Probability+"*"+symbols[j].Probability+"="+prob);
+					Console.WriteLine("p("+name+")="+Math.Round(symbols[i].Probability,3)+"*"+Math.Round(symbols[j].Probability,3)+"="+Math.Round(prob,3));
 					res.Add(new Symbol(name, prob));
 				}
 			}
@@ -257,7 +277,7 @@ namespace Information_Theory.Labs
 
 			Console.WriteLine("Name\tProbability\tCode");
 			foreach (var symbol in measuredSymbols)
-				Console.WriteLine($"{symbol.Name}\t{symbol.Probability}\t\t{symbol.Code}");
+				Console.WriteLine($"{symbol.Name}\t{Math.Round(symbol.Probability,3)}\t\t{symbol.Code}");
 			return measuredSymbols;
 		}
 		private static List<Symbol> Huffman(List<Symbol> symbols)
@@ -266,7 +286,7 @@ namespace Information_Theory.Labs
 
 			Console.WriteLine("Name\tProbability\tCode");
 			foreach (var symbol in measuredSymbols)
-				Console.WriteLine($"{symbol.Name}\t{symbol.Probability}\t\t{symbol.Code}");
+				Console.WriteLine($"{symbol.Name}\t{Math.Round(symbol.Probability,3)}\t\t{symbol.Code}");
 			return measuredSymbols;
 		}
 		
