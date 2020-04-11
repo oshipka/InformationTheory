@@ -7,10 +7,12 @@ namespace Information_Theory
 	{
 		public static void Main(string[] args)
 		{
-			Lab2.Task1();
-			Lab2.Task2();
-			//Console.WriteLine("\n\n\n");
-			Lab2.Task3();
+			Lab5.Task1();
+			Lab5.Task2();
+			Lab5.Task3();
+			Lab5.Task4();
+			Lab5.Task5();
+			Console.ReadLine();
 		}
 	}
 
